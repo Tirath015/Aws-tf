@@ -1,0 +1,14 @@
+users:
+  - username: Tirathsingh
+    Roles: [AmazonEc2FullAccess]
+      - group1
+    
+  - username: Karandeep
+    Roles: [AmazonS3FullAccess]
+      - group2
+    
+  - username: Sukhman
+    Roles: [AmazonRDSFullAccess, AmazonEC2FullAccess ]
+      - group1
+
+  
