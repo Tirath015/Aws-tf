@@ -41,10 +41,28 @@ resource "aws_internet_gateway" "ig_gateway" {
 
     vpc_id = aws_vpc.name.id
 
+
+    lifecycle {
+     # create_before_destroy = true # so when we change something and then it is going to first create the resourse first and then it will create the resourses unless by default it is going to destroy first and then it is going to create new one 
+
+     #prevent_destroy = true # so when my instance is critical and i do not want instance to be deleted so we can use it so i can not destroy my instance even after terraform destroy command 
+     
+     # ignore_changes = [] # so what ever properties i am giving in that block so if they are changed then do not run the resourse again keep it as it is
+      
+     # replace_triggered_by=[aws_subnet.subnet_config] # so when i am changing something in the subnet and then i am saying that create the new gateway and destroy the previous ones 
+
+    
+      
+    
+    }
+
+
     tags = {
         Name = "${var.vpc_config.name}-igw"
-    }   
+    } 
 
+   # depends_on = [ aws_subnet.subnet_config ]  # so this dependes on the subnet creating if subnet is not created then it is not going to create the internet gateway because if there is no subnet then there is no need of the internet gateway because we cannot access the private subnet from the internet and also we cannot access the private subnet from the other instances in the same vpc because there is no need of the internet gateway because we cannot access the private subnet from the internet and also we cannot access the private subnet from the other instances in the same vpc because there is no need of the internet gateway because we cannot access the private subnet from the internet and also we cannot access the private subnet from the other instances in the same vpc because there is no need of the internet gateway because we cannot access the private subnet from the internet and also we cannot access the private subnet from the other instances in the same vpc because there is no need of the internet gateway because we cannot access the private subnet from the internet and also we cannot access the private subnet from the other instances in the same vpc because there is no need ofthe internet gateway because we cannot accesstheprivate subnetfromtheinternetandalsowecannotaccesstheprivatesubnetfromtheotherinstancesinthesamevpcbecausethereisnoneedofinternetgatewaybecausewecannotaccesstheprivatesubnetfromtheinternetandalsowecannotaccesstheprivatesubnetfromtheotherinstancesinthesamevpcbecausethereisnoneedofinternetgatewaybecausewecannotaccesstheprivates
+    
   
 }
 
